@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form method="post" th:action="@{/user/login}">
+    <h1>Login</h1>
+    <div>
+        <label for="userId">UserId</label>
+        <input id="userId" name="userId" placeholder="아이디 입력하세요." type="text">
+    </div>
+    <div>
+        <label for="pwd">Pwd</label>
+        <input id="pwd" name="pwd" placeholder="비밀번호를 입력하세요." type="password">
+    </div>
+    <hr>
+
+    <div>
+        <div>
+            <button type="submit">로그인</button>
+        </div>
+        <div>
+            <button th:onclick="|location.href='@{/user/join}'|" type="button">회원가입
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

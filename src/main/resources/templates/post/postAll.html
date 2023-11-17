@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>allPosts</title>
+</head>
+<body>
+<h1>PostAll</h1>
+<p th:text="${session.greeting}"></p>
+<button th:onclick="|location.href='@{/posts/add}'|"
+        type="button">게시글 작성
+</button>
+<button th:onclick="|location.href='@{/user/logout}'|"
+        type="button">로그아웃
+</button>
+<div th:if="${not #lists.isEmpty(allPosts)}">
+    <table>
+        <tr>
+            <th>postId</th>
+            <th>title</th>
+            <th>body</th>
+            <th>likes</th>
+            <th>작성자</th>
+        </tr>
+        <tr th:each="posts : ${allPosts}">
+            <td><a th:href="@{/posts/{postId}(postId=${posts.postId})}" th:text="${posts.postId}"></a></td>
+            <td><a th:href="@{/posts/{postId}(postId=${posts.postId})}" th:text="${posts.title}"></a></td>
+            <td th:text="${posts.body}"></td>
+            <td th:text="${posts.likes}"></td>
+            <td th:text="${posts.user_userId}"></td>
+            <td>
+                <div th:unless="${posts.user_userId != session.user.userId}">
+                    <button th:onclick="|location.href='@{/posts/delete/{postId}(postId=${posts.postId})}'|"
+                            type="button">삭제
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

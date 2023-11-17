@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>PostDetail</h1>
+<table>
+    <tbody>
+    <tr>
+        <th>postId</th>
+        <td th:text="${postById.postId}"></td>
+    </tr>
+    <tbody>
+    <tr>
+        <th>title</th>
+        <td th:text="${postById.title}"></td>
+    </tr>
+    <tr>
+        <th>body</th>
+        <td th:text="${postById.body}"></td>
+    </tr>
+    <tr>
+        <th>likes</th>
+        <td th:text="${postById.likes}"></td>
+        <div th:unless="${postById.user_userId == session.user.userId}">
+            <button th:onclick=>좋아요</button>
+        </div>
+    </tr>
+    <tr>
+        <th>작성자</th>
+        <td th:text="${postById.user_userId}"></td>
+    </tr>
+    </tbody>
+</table>
+<div th:unless="${postById.user_userId != session.user.userId}">
+    <button th:onclick="|location.href='@{/posts/update/{postId}(postId=${postById.postId})}'|" type="button">수정하기
+    </button>
+</div>
+<button th:onclick="|location.href='@{/posts}'|" type="button">목록으로</button>
+</body>
+</html>

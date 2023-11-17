@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserAll</title>
+</head>
+<body>
+<h1>UserAll</h1>
+<div th:if="${not #lists.isEmpty(userAll)}">
+    <table>
+        <tr>
+            <th>UserId</th>
+            <th>Pwd</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="users : ${userAll}">
+            <td th:text="${users.userId}"></td>
+            <td th:text="${users.pwd}"></td>
+            <td th:text="${users.name}"></td>
+        </tr>
+    </table>
+    <hr/>
+
+    <!DOCTYPE html>
+    <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body><h1>PostDetail</h1>
+    <table>
+        <tbody>
+        <tr>
+            <th>postId</th>
+            <td th:text="${postById.postId}"></td>
+        </tr>
+        <tbody>
+        <tr>
+            <th>title</th>
+            <td th:text="${postById.title}"></td>
+        </tr>
+        <tr>
+            <th>body</th>
+            <td th:text="${postById.body}"></td>
+        </tr>
+        <tr>
+            <th>likes</th>
+            <td th:text="${postById.likes}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <button
+            th:onclick="|location.href=		'@{/posts/update/{postId}(postId=${postById.postId})}'|" type="button">수정하기
+    </button>
+    <button
+            th:onclick="|location.href='@{/posts}'|" type="button">목록으로
+    </button>
+    </body>
+    </html>
+
+</body>
+</html>

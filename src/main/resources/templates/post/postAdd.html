@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/posts/add}">
+    <h1>PostAdd</h1>
+    <div>
+        <label for="title">title</label>
+        <input id="title" name="title" placeholder="제목을 입력하세요." type="text">
+    </div>
+    <div>
+        <label for="body" >body</label>
+        <input id="body" name="body" placeholder="글을 입력하세요." type="text">
+    </div>
+    <div>
+        <input id="user_userId" name="user_userId" th:value="${session.user.userId}" type="hidden">
+    </div>
+    <hr>
+
+    <div>
+        <div>
+            <button type="submit">저장</button>
+        </div>
+        <div>
+            <button th:onclick="|location.href='@{/posts}'|"
+                    type="button">취소
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>
